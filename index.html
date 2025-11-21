@@ -73,7 +73,9 @@
       <input id="file-compress" data-tool="compress" type="file" accept="application/pdf" class="sr-only">
       <input id="file-pdf2jpg" data-tool="pdf2jpg" type="file" accept="application/pdf" class="sr-only">
       <input id="file-convert" data-tool="convert" type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/pdf" class="sr-only">
-    </section>
+    </section><input id="file-rotate" data-tool="rotate" type="file" accept="application/pdf" class="sr-only">
+<input id="file-reorder" data-tool="reorder" type="file" accept="application/pdf" class="sr-only">
+
 
     <section id="tools">
       <h2 style="text-align:center;margin-top:6px">Our Tools</h2>
@@ -102,17 +104,19 @@
           <p>Convert JPG/PNG images into a single PDF file.</p>
         </label>
 
-        <label class="card" tabindex="0" data-tool="rotate" onclick="alert('Rotate pages UI coming — use Choose files to load a PDF first')">
-          <div class="icon" style="background:#fff5f7;color:#db2777">🔁</div>
-          <h3>Rotate Pages</h3>
-          <p>Rotate selected pages (90°, 180°, 270°).</p>
-        </label>
+        <label class="card" for="file-rotate" tabindex="0" data-tool="rotate">
+  <div class="icon" style="background:#fff5f7;color:#db2777">🔁</div>
+  <h3>Rotate Pages</h3>
+  <p>Rotate selected pages (90°, 180°, 270°).</p>
+</label>
 
-        <label class="card" tabindex="0" data-tool="reorder" onclick="alert('Reorder pages UI coming — use Choose files to load a PDF first')">
-          <div class="icon" style="background:#f5f3ff;color:#6b46ff">🔀</div>
-          <h3>Reorder Pages</h3>
-          <p>Change the order of pages inside a PDF (enter sequence like 3,1,2).</p>
-        </label>
+
+       <label class="card" for="file-reorder" tabindex="0" data-tool="reorder">
+  <div class="icon" style="background:#f5f3ff;color:#6b46ff">🔀</div>
+  <h3>Reorder Pages</h3>
+  <p>Change the order of pages inside a PDF (enter sequence like 3,1,2).</p>
+</label>
+
 
         <label class="card" for="file-convert" tabindex="0" data-tool="convert">
           <div class="icon" style="background:#f8fafc;color:#475569">📄</div>
