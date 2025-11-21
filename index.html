@@ -151,7 +151,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script>
     // helpers
-    const { PDFDocument } = PDFLib;
+    const { PDFDocument, degrees } = PDFLib;
     function readFileAsArrayBuffer(file){
       return new Promise((res, rej)=>{
         const r=new FileReader(); r.onload = e=>res(e.target.result); r.onerror=rej; r.readAsArrayBuffer(file);
@@ -201,6 +201,116 @@
     }
 
     // Wire per-input change handlers (inputs correspond to labels/cards)
+    // --- utility to parse page ranges like "1-3,5" -> zero-based indices
+function parseRanges(str, max){
+  str = (str||'').replace(/\s+/g,'');
+  if(!str) return [];
+  const parts = str.split(',');
+  const set = new Set();
+  for(const p of parts){
+    if(p.includes('-')){
+      const [a,b] = p.split('-').map(x=>parseInt(x,10));
+      if(isNaN(a)||isNaN(b)) continue;
+      for(let i=Math.max(1,a); i<=Math.min(b,max); i++) set.add(i-1);
+    } else {
+      const n = parseInt(p,10);
+      if(!isNaN(n) && n>=1 && n<=max) set.add(n-1);
+    }
+  }
+  return Array.from(set).sort((a,b)=>a-b);
+}
+
+// --- Split PDF (single file)
+async function splitPdf(file, pagesSpec){
+  const arr = await readFileAsArrayBuffer(file);
+  const src = await PDFDocument.load(arr);
+  const total = src.getPageCount();
+  const indices = parseRanges(pagesSpec, total);
+  if(indices.length === 0) throw new Error('No valid pages selected');
+  const out = await PDFDocument.create();
+  const copied = await out.copyPages(src, indices);
+  copied.forEach(p => out.addPage(p));
+  const bytes = await out.save();
+  saveAs(new Blob([bytes], {type:'application/pdf'}), file.name.replace(/\.pdf$/i,'') + '_extract.pdf');
+}
+
+// --- Rotate PDF (single file)
+async function rotatePdf(file, pagesSpec, deg){
+  const arr = await readFileAsArrayBuffer(file);
+  const src = await PDFDocument.load(arr);
+  const total = src.getPageCount();
+  const indices = parseRanges(pagesSpec, total);
+  if(indices.length === 0) throw new Error('No valid pages selected');
+  const out = await PDFDocument.create();
+  const allPages = await out.copyPages(src, src.getPageIndices());
+  allPages.forEach((p, idx) => {
+    const newPage = out.addPage(p);
+    if(indices.includes(idx)){
+      newPage.setRotation(degrees(deg));
+    }
+  });
+  const bytes = await out.save();
+  saveAs(new Blob([bytes], {type:'application/pdf'}), file.name.replace(/\.pdf$/i,'') + '_rotated.pdf');
+}
+
+// --- Reorder PDF (single file). orderArr is [3,1,2] (1-based)
+async function reorderPdf(file, orderArr){
+  const arr = await readFileAsArrayBuffer(file);
+  const src = await PDFDocument.load(arr);
+  const total = src.getPageCount();
+  if(orderArr.some(x => isNaN(x) || x < 1 || x > total)) throw new Error('Invalid order values');
+  const out = await PDFDocument.create();
+  const copied = await out.copyPages(src, orderArr.map(x=>x-1));
+  copied.forEach(p => out.addPage(p));
+  const bytes = await out.save();
+  saveAs(new Blob([bytes], {type:'application/pdf'}), file.name.replace(/\.pdf$/i,'') + '_reordered.pdf');
+}
+
+// --- Wire inputs for all tools (merge/img2pdf/split/rotate/reorder)
+const inputs = document.querySelectorAll('input[type=file][data-tool]');
+inputs.forEach(inp=>{
+  inp.addEventListener('change', async e=>{
+    const tool = inp.dataset.tool || inp.getAttribute('data-tool');
+    if(!e.target.files || e.target.files.length===0) return;
+    try{
+      if(tool === 'merge'){
+        const files = Array.from(e.target.files);
+        await mergePdfs(files);
+      } else if(tool === 'img2pdf'){
+        const files = Array.from(e.target.files);
+        await imagesToPdf(files, 0.8);
+      } else if(tool === 'split'){
+        const file = e.target.files[0];
+        const pages = prompt('Enter pages to extract (e.g. 1-3,5):');
+        if(!pages) return;
+        await splitPdf(file, pages);
+      } else if(tool === 'rotate'){
+        const file = e.target.files[0];
+        const pages = prompt('Enter pages to rotate (e.g. 1,3-4):');
+        if(!pages) return;
+        const degStr = prompt('Rotate degrees (90 / 180 / 270):', '90');
+        const deg = parseInt(degStr, 10);
+        if([90,180,270].indexOf(deg) === -1){ alert('Invalid rotation'); return; }
+        await rotatePdf(file, pages, deg);
+      } else if(tool === 'reorder'){
+        const file = e.target.files[0];
+        const orderStr = prompt('Enter new page order (e.g. 3,1,2):');
+        if(!orderStr) return;
+        const orderArr = orderStr.replace(/\s+/g,'').split(',').map(x=>parseInt(x,10));
+        await reorderPdf(file, orderArr);
+      } else {
+        const names = Array.from(e.target.files).map(f=>f.name).join(', ');
+        alert('Files selected for ' + tool + ': ' + names + '\n\n(Processing for this tool is not yet implemented)');
+      }
+    }catch(err){
+      console.error(err);
+      alert('Error: ' + (err.message || err));
+    } finally {
+      inp.value = null; // reset so same file can be selected again
+    }
+  });
+});
+
     const inputs = document.querySelectorAll('input[type=file][data-tool]');
     inputs.forEach(inp=>{
       inp.addEventListener('change', async e=>{
