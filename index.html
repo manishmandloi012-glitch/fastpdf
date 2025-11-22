@@ -10,16 +10,22 @@
 
   <header>
     <div class="container nav">
-      <a href="index.html" class="logo">
-                <img src="FastPDF Tools Logo with Lightning Bolt Icon11.png" alt="FastPDF Logo">
-        FAST PDF TOOLS
+            <a href="index.html" class="logo" style="font-size: 1.1rem; font-weight: 700;">
+        <img src="FastPDF Tools Logo with Lightning Bolt Icon11.png" alt="FastPDF Logo" style="height: 24px; width: auto; object-fit: contain;">
       </a>
+      
+            <div style="display: flex; align-items: center; gap: 15px; margin-left: auto;">
+        <a href="#" style="color: var(--text); text-decoration: none; font-weight: 500;">Login</a>
+        <button style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: 600;">Sign up</button>
+        <span style="font-size: 1.5rem; cursor: pointer; color: var(--text);">
+          ⣿         </span>
+      </div>
     </div>
   </header>
 
   <main class="container">
         <section id="tool-selection" class="hero">
-      <h1>Every tool you need to work with PDFs in one place</h1>
+            <h1>Every tool you need to work with PDFs in one place</h1>
       <p style="font-size: 1.2rem; font-weight: 500; color: var(--text); margin-top: 5px; margin-bottom: 5px;">
         Every tool you need to use PDFs, at your fingertips.
       </p>
@@ -40,12 +46,6 @@
           <h3>Split PDF</h3>
           <p>Separate one page or a whole set for easy conversion.</p>
         </a>
-        
-                <a class="card" data-tool="extract" href="#" onclick="showConfirmation('extract', event)">
-          <div class="icon" style="background:#fff1f2;color:#f43f5e">✂️</div>
-          <h3>Extract Pages</h3>
-          <p>Pull out specific pages to create a new PDF.</p>
-        </a>
 
                 <a class="card" data-tool="compress" href="#" onclick="showConfirmation('compress', event)">
           <div class="icon" style="background:#f0fdf4;color:#16a34a">🗜️</div>
@@ -58,6 +58,12 @@
           <h3>Images → PDF</h3>
           <p>Convert JPG, PNG, TIFF files into a single PDF.</p>
         </a>
+        
+                <a class="card" data-tool="remove" href="#" onclick="showConfirmation('remove', event)">
+          <div class="icon" style="background:#fae8ff;color:#9333ea">🗑️</div>
+          <h3>Remove Pages</h3>
+          <p>Easily delete selected pages from a PDF document.</p>
+        </a>
 
                         <a class="card" data-tool="organize" href="#" onclick="showConfirmation('organize', event)">
           <div class="icon" style="background:#ebf4ff;color:#2563eb">🗂️</div>
@@ -65,10 +71,10 @@
           <p>Reorder and rotate pages (Organize/Reorder is a single view).</p>
         </a>
         
-                <a class="card" data-tool="remove" href="#" onclick="showConfirmation('remove', event)">
-          <div class="icon" style="background:#fae8ff;color:#9333ea">🗑️</div>
-          <h3>Remove Pages</h3>
-          <p>Easily delete selected pages from a PDF document.</p>
+                <a class="card" data-tool="extract" href="#" onclick="showConfirmation('extract', event)">
+          <div class="icon" style="background:#fff1f2;color:#f43f5e">✂️</div>
+          <h3>Extract Pages</h3>
+          <p>Pull out specific pages to create a new PDF.</p>
         </a>
         
                 <a class="card" data-tool="pdf2jpg" href="#" onclick="showConfirmation('pdf2jpg', event)">
@@ -100,6 +106,13 @@
         <div class="btn-upload">Select Files</div>
         <p style="margin-top:15px; font-size: 0.9rem;">(Maximum file count and type depends on tool)</p>
       </div>
+    </section>
+  
+        <section id="about-section" class="container" style="padding: 40px 20px; text-align: center;">
+      <h2 style="font-size: 1.8rem; margin-top: 0;">About This Site</h2>
+      <p style="max-width: 800px; margin: 10px auto; color: var(--muted);">
+        FastPDF Tools is designed for simplicity and speed. All PDF processing is performed directly in your browser using client-side JavaScript, ensuring that your files are **never uploaded to a server**. This guarantees privacy and speed for core PDF operations.
+      </p>
     </section>
   </main>
 
@@ -142,14 +155,12 @@
 
     // Function to show the simple confirmation modal
     function showConfirmation(tool, event) {
-        event.preventDefault(); // Prevents the default anchor click
+        event.preventDefault(); 
         activeToolName = tool;
         document.getElementById('confirmation-modal').style.display = 'flex';
         
-        // Wire the OK button to open the new tab with the tool parameter
         document.getElementById('modal-ok-btn').onclick = () => {
             hideConfirmation();
-            // Open new tab with the current page URL + ?tool=
             const currentURL = window.location.href.split('?')[0];
             window.open(currentURL + `?tool=${tool}`, '_blank');
         };
@@ -167,14 +178,12 @@
         const tool = urlParams.get('tool');
         
         if (tool && toolNames[tool]) {
-            // 1. Hide the grid, show the tool screen
             document.getElementById('tool-selection').style.display = 'none';
+            if (document.getElementById('about-section')) document.getElementById('about-section').style.display = 'none'; 
             document.getElementById('active-tool-screen').style.display = 'block';
             
-            // 2. Set the title of the active tool
             document.getElementById('active-tool-title').textContent = toolNames[tool];
             
-            // 3. Set input file acceptance based on the tool (basic logic)
             const fileInput = document.getElementById('file-input');
             if (tool === 'merge' || tool === 'organize') {
                 fileInput.accept = 'application/pdf';
@@ -194,13 +203,12 @@
             }
             
         } else {
-            // No valid tool parameter, show the grid
             document.getElementById('tool-selection').style.display = 'block';
+            if (document.getElementById('about-section')) document.getElementById('about-section').style.display = 'block';
             document.getElementById('active-tool-screen').style.display = 'none';
         }
     }
     
-    // Run the routing logic when the page loads
     window.addEventListener('load', loadToolScreen);
   </script>
 </body>
