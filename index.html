@@ -15,10 +15,14 @@
       </a>
       
             <div style="display: flex; align-items: center; gap: 15px; margin-left: auto;">
-        <a href="#" style="color: var(--text); text-decoration: none; font-weight: 500;">Login</a>
-        <button style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: 600;">Sign up</button>
-        <span style="font-size: 1.5rem; cursor: pointer; color: var(--text);">
-          ⣿         </span>
+        
+                <a href="login.html" style="color: var(--text); text-decoration: none; font-weight: 500;">Login</a>
+        
+                <a href="signup.html" style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: 600; text-decoration: none;">Sign up</a>
+        
+                <span style="font-size: 1.5rem; cursor: pointer; color: var(--text);">
+          ⣿ 
+        </span>
       </div>
     </div>
   </header>
@@ -53,10 +57,16 @@
           <p>Reduce file size while optimizing for quality.</p>
         </a>
         
-                <a class="card" data-tool="img2pdf" href="#" onclick="showConfirmation('img2pdf', event)">
-          <div class="icon" style="background:#f8fafc;color:#3b82f6">🖼️</div>
-          <h3>Images → PDF</h3>
-          <p>Convert JPG, PNG, TIFF files into a single PDF.</p>
+                <a class="card" data-tool="organize" href="#" onclick="showConfirmation('organize', event)">
+          <div class="icon" style="background:#ebf4ff;color:#2563eb">🗂️</div>
+          <h3>Organize PDF</h3>
+          <p>Reorder and rotate pages (Organize/Reorder is a single view).</p>
+        </a>
+        
+                        <a class="card" data-tool="extract" href="#" onclick="showConfirmation('extract', event)">
+          <div class="icon" style="background:#fff1f2;color:#f43f5e">✂️</div>
+          <h3>Extract Pages</h3>
+          <p>Pull out specific pages to create a new PDF.</p>
         </a>
         
                 <a class="card" data-tool="remove" href="#" onclick="showConfirmation('remove', event)">
@@ -64,23 +74,17 @@
           <h3>Remove Pages</h3>
           <p>Easily delete selected pages from a PDF document.</p>
         </a>
-
-                        <a class="card" data-tool="organize" href="#" onclick="showConfirmation('organize', event)">
-          <div class="icon" style="background:#ebf4ff;color:#2563eb">🗂️</div>
-          <h3>Organize PDF</h3>
-          <p>Reorder and rotate pages (Organize/Reorder is a single view).</p>
-        </a>
-        
-                <a class="card" data-tool="extract" href="#" onclick="showConfirmation('extract', event)">
-          <div class="icon" style="background:#fff1f2;color:#f43f5e">✂️</div>
-          <h3>Extract Pages</h3>
-          <p>Pull out specific pages to create a new PDF.</p>
-        </a>
         
                 <a class="card" data-tool="pdf2jpg" href="#" onclick="showConfirmation('pdf2jpg', event)">
           <div class="icon" style="background:#fff8f0;color:#ff7b00">📝</div>
           <h3>PDF → JPG</h3>
           <p>Extract PDF pages as JPG images.</p>
+        </a>
+
+                <a class="card" data-tool="img2pdf" href="#" onclick="showConfirmation('img2pdf', event)">
+          <div class="icon" style="background:#f8fafc;color:#3b82f6">🖼️</div>
+          <h3>Images → PDF</h3>
+          <p>Convert JPG, PNG, TIFF files into a single PDF.</p>
         </a>
         
                         <a class="card" data-tool="pptx2pdf" href="#" onclick="showConfirmation('pptx2pdf', event)">
