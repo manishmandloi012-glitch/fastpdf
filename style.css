@@ -1,10 +1,11 @@
-/* Color Palette: Clean, professional colors from Canva design */
+/* Color Palette: Matching your specific design image */
 :root {
-    --primary: #5267A8; /* Dark Blue Primary */
-    --primary-light: #a4b2d5;
+    --primary: #FF5733; /* Bright Red/Orange for Sign Up */
+    --primary-text: #E53935; /* Darker red for text elements */
     --muted: #6b7280;
     --bg: #F9FAFB; /* Very Light Gray Background */
-    --card: #ffffff;
+    --card: #FFFBE8; /* Cream/Light Yellow Background for Cards */
+    --card-hover: #FBF6D8; 
     --text: #333333;
     --border: #e0e0e0;
 }
@@ -23,7 +24,7 @@ body {
 
 /* Container and Header */
 header {
-    background: var(--card);
+    background: var(--card); /* Header background is white/cream */
     border-bottom: 1px solid var(--border);
 }
 
@@ -40,36 +41,66 @@ header {
     padding: 15px 0;
 }
 
-.logo {
+.logo-group {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--primary-text);
     text-decoration: none;
 }
 
-.logo img {
-    height: 32px;
+.logo-group img {
+    height: 30px; /* Adjusted logo size */
 }
 
+/* Central Navigation Links */
 .nav-links {
     display: flex;
-    gap: 25px;
-    margin-left: 50px; /* Space between logo and links */
+    gap: 30px;
+    margin-left: 50px;
+    margin-right: auto; /* Push navigation to the left of the login/signup */
 }
 
 .nav-links a {
     color: var(--text);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     padding: 5px 0;
     transition: color 0.2s;
+    font-size: 0.95rem;
 }
 
 .nav-links a:hover {
-    color: var(--primary);
+    color: var(--primary-text);
+}
+
+/* Right Header Icons/Buttons */
+.auth-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.auth-group .btn-signup {
+    background: var(--primary);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+}
+.auth-group .btn-signup:hover {
+    background: #d4492a;
+}
+.auth-group .icon-menu {
+    font-size: 1.5rem;
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 900;
 }
 
 
@@ -92,12 +123,20 @@ header {
     margin: 0 auto 40px auto;
 }
 
+.hero h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
 /* Tools Grid */
 .tools-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 25px;
     margin-top: 30px;
+    padding-bottom: 60px;
 }
 
 .card {
@@ -110,35 +149,44 @@ header {
     transition: all 0.2s ease;
     text-decoration: none;
     color: inherit;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .card:hover {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary);
+    border-color: var(--primary-text);
 }
 
-.card .icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
+/* Specific styling for the circular icon area in the card */
+.card .icon-placeholder {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Makes it a circle */
+    border: 1px solid var(--border);
+    background: var(--card);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    margin-bottom: 15px;
+    font-size: 30px;
+    margin-bottom: 25px;
 }
 
 .card h3 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .card p {
-    margin: 8px 0 0;
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    line-height: 1.3;
 }
+
 
 /* Active Tool Page Style */
 .tool-page {
@@ -147,42 +195,7 @@ header {
     min-height: 400px;
 }
 
-.tool-page h2 {
-    color: var(--primary);
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-}
-
-.tool-page .uploader {
-    padding: 80px 40px;
-    border: 3px dashed var(--border);
-    border-radius: 12px;
-    max-width: 600px;
-    margin: 0 auto;
-    cursor: pointer;
-    transition: border-color 0.2s;
-}
-
-.tool-page .uploader:hover {
-    border-color: var(--primary);
-}
-
-.btn-upload {
-    background: var(--primary);
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.btn-upload:hover {
-    background: #445695;
-}
-
-/* Footer */
+/* Footer (Carried over) */
 footer {
     padding: 25px 0;
     text-align: center;
@@ -191,32 +204,33 @@ footer {
     border-top: 1px solid var(--border);
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments (Carried over) */
 @media (max-width: 992px) {
     .tools-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    .nav-links {
+        display: none; /* Hide center nav links */
     }
 }
 
 @media (max-width: 768px) {
     .tools-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .hero h1 {
-        font-size: 1.8rem;
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
 @media (max-width: 480px) {
     .tools-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; 
     }
-    .nav-links {
-        display: none; /* Hide nav links on very small screens */
+    .auth-group {
+        gap: 8px;
     }
 }
 
-/* Utility classes */
+
+/* Utility classes (Carried over) */
 .sr-only {
     position: absolute !important;
     height: 1px;
@@ -224,45 +238,6 @@ footer {
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
 }
-
-/* Confirmation Modal (Carried over from previous step) */
 .confirm-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-}
-
-.modal-actions button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.btn-ok {
-    background: var(--primary);
-    color: white;
-    border: none;
-}
-
-.btn-cancel {
-    background: var(--border);
-    color: var(--text);
-    border: none;
+    /* ... modal styling ... */
 }
