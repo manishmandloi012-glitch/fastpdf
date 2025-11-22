@@ -19,14 +19,16 @@
 
   <main class="container">
         <section id="tool-selection" class="hero">
-            <h1>Every tool you need to work with PDFs in one place</h1>
+      <h1>Every tool you need to work with PDFs in one place</h1>
       <p style="font-size: 1.2rem; font-weight: 500; color: var(--text); margin-top: 5px; margin-bottom: 5px;">
         Every tool you need to use PDFs, at your fingertips.
       </p>
       <p style="font-size: 1.05rem; color: var(--muted); max-width: 800px; margin: 0 auto 40px auto;">
         All are 100% FREE and easy to use! Merge, split, compress, convert, rotate, unlock and watermark PDFs with just a few clicks.
       </p>
-            <div class="tools-grid">
+
+      <div class="tools-grid">
+                
                 <a class="card" data-tool="merge" href="#" onclick="showConfirmation('merge', event)">
           <div class="icon" style="background:#fff4f4;color:#ff6b6b">🧩</div>
           <h3>Merge PDF</h3>
@@ -37,6 +39,12 @@
           <div class="icon" style="background:#fff7ed;color:#f59e0b">✂️</div>
           <h3>Split PDF</h3>
           <p>Separate one page or a whole set for easy conversion.</p>
+        </a>
+        
+                <a class="card" data-tool="extract" href="#" onclick="showConfirmation('extract', event)">
+          <div class="icon" style="background:#fff1f2;color:#f43f5e">✂️</div>
+          <h3>Extract Pages</h3>
+          <p>Pull out specific pages to create a new PDF.</p>
         </a>
 
                 <a class="card" data-tool="compress" href="#" onclick="showConfirmation('compress', event)">
@@ -50,23 +58,17 @@
           <h3>Images → PDF</h3>
           <p>Convert JPG, PNG, TIFF files into a single PDF.</p>
         </a>
+
+                        <a class="card" data-tool="organize" href="#" onclick="showConfirmation('organize', event)">
+          <div class="icon" style="background:#ebf4ff;color:#2563eb">🗂️</div>
+          <h3>Organize PDF</h3>
+          <p>Reorder and rotate pages (Organize/Reorder is a single view).</p>
+        </a>
         
                 <a class="card" data-tool="remove" href="#" onclick="showConfirmation('remove', event)">
           <div class="icon" style="background:#fae8ff;color:#9333ea">🗑️</div>
           <h3>Remove Pages</h3>
           <p>Easily delete selected pages from a PDF document.</p>
-        </a>
-        
-                <a class="card" data-tool="extract" href="#" onclick="showConfirmation('extract', event)">
-          <div class="icon" style="background:#fff1f2;color:#f43f5e">✂️</div>
-          <h3>Extract Pages</h3>
-          <p>Pull out specific pages to create a new PDF.</p>
-        </a>
-
-                <a class="card" data-tool="organize" href="#" onclick="showConfirmation('organize', event)">
-          <div class="icon" style="background:#ebf4ff;color:#2563eb">🗂️</div>
-          <h3>Organize PDF</h3>
-          <p>Reorder and rotate pages (Organize/Reorder is a single view).</p>
         </a>
         
                 <a class="card" data-tool="pdf2jpg" href="#" onclick="showConfirmation('pdf2jpg', event)">
@@ -75,7 +77,7 @@
           <p>Extract PDF pages as JPG images.</p>
         </a>
         
-                <a class="card" data-tool="pptx2pdf" href="#" onclick="showConfirmation('pptx2pdf', event)">
+                        <a class="card" data-tool="pptx2pdf" href="#" onclick="showConfirmation('pptx2pdf', event)">
           <div class="icon" style="background:#fef2f2;color:#ef4444">🅿️</div>
           <h3>PPTX → PDF</h3>
           <p>Convert Microsoft PowerPoint files to PDF.</p>
@@ -86,7 +88,7 @@
           <h3>XLSX → PDF</h3>
           <p>Convert Microsoft Excel spreadsheets to PDF.</p>
         </a>
-
+        
       </div>
     </section>
 
@@ -190,8 +192,6 @@
                  fileInput.accept = 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
                  fileInput.multiple = false;
             }
-            
-            // NOTE: PDF processing logic (like file handling) would be added here later.
             
         } else {
             // No valid tool parameter, show the grid
