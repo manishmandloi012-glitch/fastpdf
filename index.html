@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FastPDF Tools — Simple PDF toolbox</title>
-  <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 
@@ -19,10 +19,14 @@
 
   <main class="container">
         <section id="tool-selection" class="hero">
-      <h1>Every tool you need to work with PDFs in one place</h1>
-      <p>All tools work in your browser — files stay on your device. Click any card to begin.</p>
-
-      <div class="tools-grid">
+            <h1>Every tool you need to work with PDFs in one place</h1>
+      <p style="font-size: 1.2rem; font-weight: 500; color: var(--text); margin-top: 5px; margin-bottom: 5px;">
+        Every tool you need to use PDFs, at your fingertips.
+      </p>
+      <p style="font-size: 1.05rem; color: var(--muted); max-width: 800px; margin: 0 auto 40px auto;">
+        All are 100% FREE and easy to use! Merge, split, compress, convert, rotate, unlock and watermark PDFs with just a few clicks.
+      </p>
+            <div class="tools-grid">
                 <a class="card" data-tool="merge" href="#" onclick="showConfirmation('merge', event)">
           <div class="icon" style="background:#fff4f4;color:#ff6b6b">🧩</div>
           <h3>Merge PDF</h3>
@@ -109,6 +113,7 @@
         <button class="btn-cancel" onclick="hideConfirmation()">Cancel</button>
         <button class="btn-ok" id="modal-ok-btn">OK</button>
       </div>
+      <input type="hidden" id="modal-tool-name">
     </div>
   </div>
 
@@ -131,7 +136,7 @@
       'xlsx2pdf': 'Excel to PDF',
     };
     
-    let activeToolName = ''; // Stores the tool name when the modal is active
+    let activeToolName = ''; 
 
     // Function to show the simple confirmation modal
     function showConfirmation(tool, event) {
@@ -167,14 +172,14 @@
             // 2. Set the title of the active tool
             document.getElementById('active-tool-title').textContent = toolNames[tool];
             
-            // 3. Optional: Add 'active' class to header link if needed
-            // You would normally use this to highlight the tool link in a navigation bar.
-            
-            // 4. Set input file acceptance based on the tool (basic logic)
+            // 3. Set input file acceptance based on the tool (basic logic)
             const fileInput = document.getElementById('file-input');
-            if (tool === 'merge' || tool === 'split' || tool === 'compress' || tool === 'organize' || tool === 'remove' || tool === 'extract' || tool === 'pdf2jpg') {
+            if (tool === 'merge' || tool === 'organize') {
                 fileInput.accept = 'application/pdf';
                 fileInput.multiple = (tool === 'merge');
+            } else if (tool === 'split' || tool === 'compress' || tool === 'remove' || tool === 'extract' || tool === 'pdf2jpg') {
+                fileInput.accept = 'application/pdf';
+                fileInput.multiple = false;
             } else if (tool === 'img2pdf') {
                 fileInput.accept = 'image/*';
                 fileInput.multiple = true;
@@ -186,8 +191,7 @@
                  fileInput.multiple = false;
             }
             
-            // 5. Here you would load the PDF processing functions (not included in this UX phase)
-            // Example: fileInput.addEventListener('change', handleFileProcessing);
+            // NOTE: PDF processing logic (like file handling) would be added here later.
             
         } else {
             // No valid tool parameter, show the grid
