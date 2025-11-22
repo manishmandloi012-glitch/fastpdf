@@ -4,26 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FastPDF Tools — Simple PDF toolbox</title>
-    <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 
   <header>
     <div class="container nav">
-            <a href="index.html" class="logo">
-        <img src="FastPDF Tools Logo with Lightning Bolt Icon11.png" alt="FastPDF Logo" style="height: 24px; width: auto; object-fit: contain;">
-      </a>
-      
+            <div class="logo-group">
+        <span style="color: var(--primary-text);">FAST</span>
+        <img src="FastPDF Tools Logo with Lightning Bolt Icon11.png" alt="FastPDF Logo">
+        <span style="color: var(--text);">TOOLS</span>
+      </div>
+
             <nav class="nav-links">
-                <a href="#" onclick="showConfirmation('merge', event)">Merge PDF</a>
-        <a href="#" onclick="showConfirmation('split', event)">Split PDF</a>
-        <a href="#" onclick="showConfirmation('compress', event)">Compress PDF</a>
-        <a href="#about-section">About</a>
+        <a href="#" onclick="showConfirmation('merge', event)">MERGE PDF</a>
+        <a href="#" onclick="showConfirmation('split', event)">SPLIT PDF</a>
+        <a href="#tool-selection">ALL TOOLS</a>
       </nav>
       
-            <div style="display: flex; align-items: center; gap: 15px; margin-left: auto;">
-        <a href="login.html" style="color: var(--text); text-decoration: none; font-weight: 500;">Login</a>
-        <a href="signup.html" style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: 600; text-decoration: none;">Sign up</a>
+            <div class="auth-group">
+        <a href="login.html" style="color: var(--text); text-decoration: none; font-weight: 500;">LOGIN</a>
+        <a href="signup.html" class="btn-signup">Sign up</a>
+        <span class="icon-menu">
+          &#x2022;&#x2022;&#x2022;         </span>
       </div>
     </div>
   </header>
@@ -34,72 +37,57 @@
       <p style="font-size: 1.2rem; font-weight: 500; color: var(--text); margin-top: 5px; margin-bottom: 5px;">
         Every tool you need to use PDFs, at your fingertips.
       </p>
-      <p style="font-size: 1.05rem; color: var(--muted); max-width: 800px; margin: 0 auto 40px auto;">
+      <p style="font-size: 1.05rem; color: var(--muted); max-width: 800px; margin: 0 auto 30px auto;">
         All are 100% FREE and easy to use! Merge, split, compress, convert, rotate, unlock and watermark PDFs with just a few clicks.
       </p>
+      
+      <h2>Our Tools</h2>
 
       <div class="tools-grid">
-                
                 <a class="card" data-tool="merge" href="#" onclick="showConfirmation('merge', event)">
-          <div class="icon" style="background:#fff4f4;color:#ff6b6b">🧩</div>
-          <h3>Merge PDF</h3>
-          <p>Combine PDFs in the order you want.</p>
+          <div class="icon-placeholder"></div> 
+          <h3>MERGE PDF</h3>
+          <p>Combine your PDFs in the order you want with a fast and simple PDF merger.</p>
         </a>
 
                 <a class="card" data-tool="split" href="#" onclick="showConfirmation('split', event)">
-          <div class="icon" style="background:#fff7ed;color:#f59e0b">✂️</div>
-          <h3>Split PDF</h3>
-          <p>Separate one page or a whole set for easy conversion.</p>
+          <div class="icon-placeholder"></div>
+          <h3>SPLIT PDF</h3>
+          <p>Separate one page or a whole set of pages to create independent PDF files.</p>
         </a>
 
                 <a class="card" data-tool="compress" href="#" onclick="showConfirmation('compress', event)">
-          <div class="icon" style="background:#f0fdf4;color:#16a34a">🗜️</div>
-          <h3>Compress PDF</h3>
-          <p>Reduce file size while optimizing for quality.</p>
+          <div class="icon-placeholder"></div>
+          <h3>COMPRESS PDF</h3>
+          <p>Reduce PDF file size while keeping the best possible quality.</p>
         </a>
         
-                <a class="card" data-tool="organize" href="#" onclick="showConfirmation('organize', event)">
-          <div class="icon" style="background:#ebf4ff;color:#2563eb">🗂️</div>
-          <h3>Organize PDF</h3>
-          <p>Reorder and rotate pages (Organize/Reorder is a single view).</p>
+                <a class="card" data-tool="img2pdf" href="#" onclick="showConfirmation('img2pdf', event)">
+          <div class="icon-placeholder"></div>
+          <h3>IMAGES TO PDF</h3>
+          <p>Convert JPG and PNG images into a clean, high-quality single PDF.</p>
         </a>
         
-                        <a class="card" data-tool="extract" href="#" onclick="showConfirmation('extract', event)">
-          <div class="icon" style="background:#fff1f2;color:#f43f5e">✂️</div>
-          <h3>Extract Pages</h3>
+                <a class="card" data-tool="organize" href="#" onclick="showConfirmation('organize', event)">
+          <div class="icon-placeholder"></div>
+          <h3>ORGANIZE PDF</h3>
+          <p>Reorder and rotate pages.</p>
+        </a>
+        <a class="card" data-tool="extract" href="#" onclick="showConfirmation('extract', event)">
+          <div class="icon-placeholder"></div>
+          <h3>EXTRACT PAGES</h3>
           <p>Pull out specific pages to create a new PDF.</p>
         </a>
-        
-                <a class="card" data-tool="remove" href="#" onclick="showConfirmation('remove', event)">
-          <div class="icon" style="background:#fae8ff;color:#9333ea">🗑️</div>
-          <h3>Remove Pages</h3>
-          <p>Easily delete selected pages from a PDF document.</p>
-        </a>
-        
-                <a class="card" data-tool="pdf2jpg" href="#" onclick="showConfirmation('pdf2jpg', event)">
-          <div class="icon" style="background:#fff8f0;color:#ff7b00">📝</div>
+        <a class="card" data-tool="pdf2jpg" href="#" onclick="showConfirmation('pdf2jpg', event)">
+          <div class="icon-placeholder"></div>
           <h3>PDF → JPG</h3>
           <p>Extract PDF pages as JPG images.</p>
         </a>
-
-                <a class="card" data-tool="img2pdf" href="#" onclick="showConfirmation('img2pdf', event)">
-          <div class="icon" style="background:#f8fafc;color:#3b82f6">🖼️</div>
-          <h3>Images → PDF</h3>
-          <p>Convert JPG, PNG, TIFF files into a single PDF.</p>
-        </a>
-        
-                        <a class="card" data-tool="pptx2pdf" href="#" onclick="showConfirmation('pptx2pdf', event)">
-          <div class="icon" style="background:#fef2f2;color:#ef4444">🅿️</div>
+        <a class="card" data-tool="pptx2pdf" href="#" onclick="showConfirmation('pptx2pdf', event)">
+          <div class="icon-placeholder"></div>
           <h3>PPTX → PDF</h3>
           <p>Convert Microsoft PowerPoint files to PDF.</p>
         </a>
-
-                <a class="card" data-tool="xlsx2pdf" href="#" onclick="showConfirmation('xlsx2pdf', event)">
-          <div class="icon" style="background:#f0fff4;color:#10b981">💹</div>
-          <h3>XLSX → PDF</h3>
-          <p>Convert Microsoft Excel spreadsheets to PDF.</p>
-        </a>
-        
       </div>
     </section>
 
@@ -138,30 +126,28 @@
   </div>
 
   <script>
-    // =========================================
-    // NEW TAB / URL ROUTING LOGIC
-    // =========================================
-
-    // Tool names mapping for the title screen
-    const toolNames = {
-      'merge': 'Merge PDF',
-      'split': 'Split PDF',
-      'compress': 'Compress PDF',
-      'img2pdf': 'Images (JPG/PNG/TIFF) to PDF',
-      'remove': 'Remove Pages from PDF',
-      'extract': 'Extract Pages',
-      'organize': 'Organize (Rotate/Reorder) PDF',
-      'pdf2jpg': 'PDF to JPG',
-      'pptx2pdf': 'PowerPoint to PDF',
-      'xlsx2pdf': 'Excel to PDF',
-    };
+    // [NOTE: The full JavaScript logic has been omitted here for brevity but should be included 
+    // in the actual index.html file you deploy. It includes all the routing and file handling 
+    // from the previous complete code block.]
     
-    let activeToolName = ''; 
+    // =========================================
+    // NEW TAB / URL ROUTING LOGIC
+    // =========================================
 
-    // Function to show the simple confirmation modal
-    function showConfirmation(tool, event) {
+    // Tool names mapping for the title screen
+    const toolNames = {
+        'merge': 'Merge PDF', 'split': 'Split PDF', 'compress': 'Compress PDF',
+        'img2pdf': 'Images (JPG/PNG/TIFF) to PDF', 'remove': 'Remove Pages from PDF',
+        'extract': 'Extract Pages', 'organize': 'Organize (Rotate/Reorder) PDF',
+        'pdf2jpg': 'PDF to JPG', 'pptx2pdf': 'PowerPoint to PDF', 'xlsx2pdf': 'Excel to PDF',
+    };
+    
+    let activeTool = ''; 
+
+    // Function to show the simple confirmation modal
+    function showConfirmation(tool, event) {
         event.preventDefault(); 
-        activeToolName = tool;
+        activeTool = tool;
         document.getElementById('confirmation-modal').style.display = 'flex';
         
         document.getElementById('modal-ok-btn').onclick = () => {
@@ -169,42 +155,35 @@
             const currentURL = window.location.href.split('?')[0];
             window.open(currentURL + `?tool=${tool}`, '_blank');
         };
-    }
+    }
 
-    // Function to hide the confirmation modal
     function hideConfirmation() {
         document.getElementById('confirmation-modal').style.display = 'none';
-        activeToolName = '';
+        activeTool = '';
     }
     
-    // Function to read the URL parameter and show the correct screen
     function loadToolScreen() {
         const urlParams = new URLSearchParams(window.location.search);
         const tool = urlParams.get('tool');
         
         if (tool && toolNames[tool]) {
+            activeTool = tool; 
             document.getElementById('tool-selection').style.display = 'none';
             if (document.getElementById('about-section')) document.getElementById('about-section').style.display = 'none'; 
             document.getElementById('active-tool-screen').style.display = 'block';
-            
             document.getElementById('active-tool-title').textContent = toolNames[tool];
             
             const fileInput = document.getElementById('file-input');
             if (tool === 'merge' || tool === 'organize') {
-                fileInput.accept = 'application/pdf';
-                fileInput.multiple = (tool === 'merge');
+                fileInput.accept = 'application/pdf'; fileInput.multiple = (tool === 'merge');
             } else if (tool === 'split' || tool === 'compress' || tool === 'remove' || tool === 'extract' || tool === 'pdf2jpg') {
-                fileInput.accept = 'application/pdf';
-                fileInput.multiple = false;
+                fileInput.accept = 'application/pdf'; fileInput.multiple = false;
             } else if (tool === 'img2pdf') {
-                fileInput.accept = 'image/*';
-                fileInput.multiple = true;
+                fileInput.accept = 'image/*'; fileInput.multiple = true;
             } else if (tool === 'pptx2pdf') {
-                 fileInput.accept = 'application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation';
-                 fileInput.multiple = false;
+                 fileInput.accept = 'application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation'; fileInput.multiple = false;
             } else if (tool === 'xlsx2pdf') {
-                 fileInput.accept = 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-                 fileInput.multiple = false;
+                 fileInput.accept = 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'; fileInput.multiple = false;
             }
             
         } else {
