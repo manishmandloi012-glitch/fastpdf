@@ -1,9 +1,9 @@
-/* Color Palette inspired by iLovePDF / Modern Web */
+/* Color Palette: Clean, professional colors from Canva design */
 :root {
-    --primary: #eb4034; /* Red Accent Color */
-    --primary-light: #fbe6e5;
+    --primary: #5267A8; /* Dark Blue Primary */
+    --primary-light: #a4b2d5;
     --muted: #6b7280;
-    --bg: #f5f5f5; /* Light Background */
+    --bg: #F9FAFB; /* Very Light Gray Background */
     --card: #ffffff;
     --text: #333333;
     --border: #e0e0e0;
@@ -54,6 +54,25 @@ header {
     height: 32px;
 }
 
+.nav-links {
+    display: flex;
+    gap: 25px;
+    margin-left: 50px; /* Space between logo and links */
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+
 /* Hero Section */
 .hero {
     padding: 60px 0;
@@ -74,10 +93,6 @@ header {
 }
 
 /* Tools Grid */
-.tools-section {
-    padding: 40px 0 80px 0;
-}
-
 .tools-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -164,7 +179,7 @@ header {
 }
 
 .btn-upload:hover {
-    background: #cc372a;
+    background: #445695;
 }
 
 /* Footer */
@@ -196,6 +211,9 @@ footer {
     .tools-grid {
         grid-template-columns: 1fr;
     }
+    .nav-links {
+        display: none; /* Hide nav links on very small screens */
+    }
 }
 
 /* Utility classes */
@@ -207,7 +225,7 @@ footer {
     clip: rect(1px, 1px, 1px, 1px);
 }
 
-/* Confirmation Modal */
+/* Confirmation Modal (Carried over from previous step) */
 .confirm-modal {
     position: fixed;
     top: 0;
@@ -248,7 +266,3 @@ footer {
     color: var(--text);
     border: none;
 }
-.uploader-visible{display:flex;gap:10px;justify-content:center;margin-top:12px}
-.uploader-visible button{padding:10px 14px;border-radius:8px;border:0;cursor:pointer}
-.btn-primary{background:var(--accent);color:white}
-.btn-ghost{background:#eef2ff;color:#334155}
