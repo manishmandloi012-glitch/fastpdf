@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Image to PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background-image: url('tool.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+        }
+
+        /* Ye wo area hai jo White Box ke upar fit hoga */
+        .tool-container {
+            width: 500px;
+            height: 300px;
+            display: flex; /* Cheezen center karne ke liye */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px; /* Thoda niche khiskane ke liye taaki box me fit ho */
+        }
+
+        /* Upload Button ka design */
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.8);
+            width: 80%;
+        }
+
+        .btn {
+            background-color: #ff4757; /* Red button match karne ke liye */
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover { background-color: #ff6b81; }
+
+        #status { margin-top: 15px; font-weight: bold; color: green; }
+    </style>
+</head>
+<body>
+
+    <div class="tool-container">
+        <input type="file" id="imageInput" accept="image/*" multiple>
+        <button id="convertBtn" class="btn">Download PDF</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        const { jsPDF } = window.jspdf;
+        const imageInput = document.getElementById('imageInput');
+        const convertBtn = document.getElementById('convertBtn');
+        const statusDiv = document.getElementById('status');
+
+        convertBtn.addEventListener('click', async function() {
+            if (imageInput.files.length === 0) {
+                alert("Please select images first!");
+                return;
+            }
+
+            statusDiv.innerText = "Converting...";
+            statusDiv.style.color = "blue";
+            
+            const doc = new jsPDF();
+
+            for (let i = 0; i < imageInput.files.length; i++) {
+                const file = imageInput.files[i];
+                const imgData = await readFile(file);
+                const imgProps = doc.getImageProperties(imgData);
+                const pdfWidth = doc.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                if (i > 0) doc.addPage();
+                doc.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+            }
+
+            doc.save("my-document.pdf");
+            statusDiv.innerText = "Downloaded Successfully!";
+            statusDiv.style.color = "green";
+        });
+
+        function readFile(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.readAsDataURL(file);
+            });
+        }
+    </script>
+</body>
+</html>
