@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast PDF Tools</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* Aapki design image ko background banaya */
+            background-image: url('home.png'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            overflow: hidden; /* Scrollbar hatane ke liye */
+        }
+
+        /* Ye invisible button hai jo "Images to PDF" card ke upar aayega */
+        .click-zone {
+            position: absolute;
+            
+            /* Isse hum button ki position set karte hain (Andaze se lagaya hai) */
+            top: 45%;    /* Upar se kitna niche */
+            left: 72%;   /* Left se kitna dur (4th card ke liye) */
+            
+            width: 15%;  /* Button ki chaudai */
+            height: 30%; /* Button ki lambai */
+            
+            /* Testing ke liye Red border (Baad me hata denge) */
+            border: 2px solid red; 
+            cursor: pointer;
+        }
+        
+        /* Mobile ke liye thoda adjust */
+        @media (max-width: 768px) {
+            body { background-size: contain; background-position: top; }
+            .click-zone { top: 30%; left: 10%; width: 80%; height: 10%; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="converter.html" class="click-zone" title="Click to Convert"></a>
+
+</body>
+</html>
